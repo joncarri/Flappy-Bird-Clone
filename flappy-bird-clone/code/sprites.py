@@ -5,7 +5,7 @@ from random import choice, randint
 class BG(pygame.sprite.Sprite):
     def __init__(self,groups,scale_factor):
         super().__init__(groups)
-        bg_image = pygame.image.load('graphics/environment/background.png').convert()
+        bg_image = pygame.image.load('flappy-bird-clone/graphics/environment/background.png').convert()
 
         #Scales background image
         full_height = bg_image.get_height() * scale_factor
@@ -32,7 +32,7 @@ class Ground(pygame.sprite.Sprite):
         self.sprite_type = 'ground'
 
         #ground image
-        ground_surf = pygame.image.load('graphics/environment/ground.png').convert_alpha()
+        ground_surf = pygame.image.load('flappy-bird-clone/graphics/environment/ground.png').convert_alpha()
         self.image =pygame.transform.scale(ground_surf,pygame.math.Vector2(ground_surf.get_size()) * scale_Factor)
 
         #position
@@ -68,7 +68,7 @@ class Plane(pygame.sprite.Sprite):
     def import_frames(self,scale_Factor):
         self.frames = []
         for i in range(3):
-            surf = pygame.image.load(f'graphics/plane/red{i}.png').convert_alpha()
+            surf = pygame.image.load(f'flappy-bird-clone/graphics/plane/red{i}.png').convert_alpha()
             scaled_surface = pygame.transform.scale(surf, pygame.math.Vector2(surf.get_size()) * scale_Factor)
             self.frames.append(scaled_surface)
     
@@ -95,8 +95,8 @@ class Plane(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
         #sound
-        self.jump_sound = pygame.mixer.Sound('sounds/jump.wav')
-        self.jump_sound.set_volume(0.3)
+        self.jump_sound = pygame.mixer.Sound('flappy-bird-clone/sounds/jump.wav')
+        self.jump_sound.set_volume(0.02)
 
     def update(self, dt):
 
@@ -110,7 +110,7 @@ class Obstacle(pygame.sprite.Sprite):
         self.sprite_type = 'obstacle'
 
         orientation = choice(('up','down'))
-        surf = pygame.image.load(f'graphics/obstacles/{choice((0,1))}.png').convert_alpha()
+        surf = pygame.image.load(f'flappy-bird-clone/graphics/obstacles/{choice((0,1))}.png').convert_alpha()
         self.image = pygame.transform.scale (surf, pygame.math.Vector2(surf.get_size()) * scale_Factor)
 
         x = window_width + randint(40,100)
